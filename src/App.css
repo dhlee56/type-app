@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+.nabtab {
+  background-color: gray;
+  margin-left: 24%;
+  margin-right: 24%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+  height: 50px;
+}
+ul {
+  list-style-type: none;
+}
+li a {
+  text-decoration: none;
+  background-color: black;
+  padding: 5px;
+  color: white;
+}
