@@ -3,50 +3,18 @@ import logo from './logo.svg';
 import { useState, useEffect } from 'react';
 import './App.css';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useAuth } from './AuthContext';
 type User = {
   id: number;
   name: string;
   email: string;
 }
-function App() {
+function Home() {
+  const { authUser, isAuthenticated} = useAuth();
   const [count, setCount] = useState(0)
   const [msg, setMsg] = useState("initial message")
   const [users, setUsers] = useState<User[]>([])
-  const [userInput, setUserInput] = useState({
-    name: "",
-    email: "",
-    username: "",
-    phone: ""
-  });
-  function handleInputChange(field: any, event: { target: { value: any; }; }) {
-    setUserInput((prevState) => ({
-      ...prevState,
-      [field]: event.target.value,
-    }));
-  }
 
-  function handleSubmit(event: any) {
-    event.preventDefault();
-    //console.log(userInput);
-    fetch("http://localhost:4000/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userInput),
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        console.log(result);
-        setUserInput({
-          name: "",
-          email: "",
-          username: "",
-          phone: ""
-        });
-      });
-
-  }
 
   출처: https://rudaks.tistory.com/entry/react-form을-다루는-5가지-방법 [[루닥스 블로그] 연습만이 살길이다:티스토리]
 
@@ -163,46 +131,8 @@ function App() {
           }} >
           Set users
         </button>
-        <form onSubmit={handleSubmit}>
-          <h2>Userinput</h2>
-          <div className="control">
-            <label>Email</label>
-            <input
-              type="email"
-              onChange={(event) => handleInputChange("email", event)}
-              value={userInput.email}
-            />
-          </div>
-          <div className="control">
-            <label>Name</label>
-            <input
-              type="text"
-              onChange={(event) => handleInputChange("name", event)}
-              value={userInput.name}
-            />
-          </div>
-          <div className="control">
-            <label>Username</label>
-            <input
-              type="text"
-              onChange={(event) => handleInputChange("username", event)}
-              value={userInput.username}
-            />
-          </div>
-          <div>
-            <label>Phone</label>
-            <input
-              type="text"
-              onChange={(event) => handleInputChange("phone", event)}
-              value={userInput.phone}
-            />
-          </div>
-          <p>
-            <button type="submit">Submit</button>
-          </p>
-        </form>
       </div>
     </div>
   );
 }
-export default App;
+export default Home;

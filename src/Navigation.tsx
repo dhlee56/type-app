@@ -9,6 +9,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Login from "./Login";
 
 export default function Navigation() {
   return (
@@ -25,6 +26,9 @@ export default function Navigation() {
             <li>
               <Link to="/users">Users</Link>
             </li>
+            <li>
+                <Link to="/login">Login</Link>
+            </li>
           </ul>
         </nav>
 
@@ -38,6 +42,7 @@ export default function Navigation() {
           <Route path="/" element = {<Home />}>
           </Route>
           <Route path='/product/:id' element={<ProductDetail />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </div>
     </Router>
